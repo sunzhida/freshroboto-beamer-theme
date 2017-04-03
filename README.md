@@ -7,6 +7,12 @@ Anpassungen gegenüber dem HSRM-Theme:
 - Änderungen der Grafiken der HSRM zu neutralen Platzhaltern
 - Einführung einer Ordnerstruktur
 
+Das Theme wurde in folgenden Umgebungen getestet:
+
+- macOS -> MacTex, Texpad
+- offizieller Sharelatex Docker Container (Linux) -> TexLive, Sharelatex
+- Windows 10 -> TexLive, TexMaker
+
 Die [Beamer Klassen](http://www.tex.ac.uk/CTAN/macros/latex/contrib/beamer/doc/beameruserguide.pdf) für LaTeX dienen zur Erstellung von Präsentationen, welche mit einem Projektor vorgeführt werden sollen. Das Textsatzsystem erzeugt dazu PDF Dateien, die von einer großen Anzahl an Programmen gezeigt werden können.
 	
 Das hier vorgestellte Theme für Beamer macht die Erstellung von Folien (Grundkenntnisse in LaTeX vorausgesetzt) zu einem Kinderspiel.

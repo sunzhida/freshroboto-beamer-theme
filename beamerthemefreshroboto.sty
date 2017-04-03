@@ -1,25 +1,24 @@
-% Name           : beamerthemehsrm.sty
-% Author         : Benjamin Weiss (benjamin.weiss@kreatiefton.de)
-% Version        : 0.4
-% Created on     : 05.05.2013
-% Last Edited on : 24.03.2014
-% Copyright      : Copyright (c) 2013-2014 by Benjamin Weiss. All rights reserved.
+%!TEX program = xelatex
+% Name           : demo.tex
+% Author         : Moritz Flöter
+% Version        : 1.0
+% Created on     : 17.04.2016
+% Last Edited on : 17.04.2016
+% Copyright      : Copyright (c) 2016 by Moritz Flöter.
+% Based on       : HSRM-Theme from Benjamin Weiss
 % License        : This file may be distributed and/or modified under the
 %                  GNU Public License.
-% Description    : Beamer theme that complies with the corporate design of
-%                  the RheinMain University of Applied Sciences.
-%                   --> http://www.hs-rm.de
+% Description    : Beamer theme.
 
-\ProvidesPackage{beamerthemehsrm}[2013/05/05]
 
+\ProvidesPackage{beamerthemefreshroboto}[2016/04/04]
 \usepackage{eso-pic}
+\usepackage{pifont}
 
 \newif\if@doSans
 \@doSansfalse
 \DeclareOption{noserifmath}{\@doSanstrue}
-\newif\if@doNoFlama
-\@doNoFlamafalse
-\DeclareOption{noflama}{\@doNoFlamatrue}
+
 \newif\if@doSectionPage
 \@doSectionPagefalse
 \DeclareOption{nosectionpages}{\@doSectionPagetrue}
@@ -39,6 +38,8 @@
 %---------------------------------------------------------------------
 \newcommand{\rightTextArrow}{→}
 \newcommand{\quoted}[1]{›#1‹}
+\newcommand{\cmark}{\textcolor[rgb]{0.411764706,0.490196078,0.098039216}{\ding{51}}}%
+\newcommand{\xmark}{\textcolor[rgb]{0.588235294,0,0.058823529}{\ding{55}}}%
 \newcommand{\doublequoted}[1]{»#1«}
 
 %---------------------------------------------------------------------
@@ -109,39 +110,73 @@
 %---------------------------------------------------------------------
 % Fonts
 %---------------------------------------------------------------------
-
 % General
 
 % Declare fontfamilys
-\if@doNoFlama%
-	% Sans serif math option
-	\if@doSans%
-		% sans serif math %
-		\usepackage[no-math]{fontspec}%	
-		\setmainfont{Arial}%
-	\else%
-		% serif math %
-		\usepackage{fontspec}%	
-		\usefonttheme[onlymath]{serif}%
-	\fi%
-	\newfontfamily\Light{Arial}%
-	\newfontfamily\Book{Arial-Bold}%
-	\newfontfamily\Medium{Arial-Bold}%
-	\setsansfont{Arial}%
+
+\if@doSans%
+	% sans serif math %
+	\usepackage[no-math]{fontspec}%	
+	\setmainfont[
+        Path = template/font/,
+        UprightFont = Roboto-Regular,
+        ItalicFont = Roboto-Italic,
+        BoldFont = Roboto-Medium,
+        BoldItalicFont = Roboto-MediumItalic
+    ]{Main}
 \else%
-	% Sans serif math option
-	\if@doSans%
-		\usepackage[no-math]{fontspec}%	
-		\setmainfont{Flama-Light}%
-	\else%
-		\usepackage{fontspec}%	
-		\usefonttheme[onlymath]{serif}%
-	\fi%
-	\newfontfamily\Light{Flama-Light}%
-	\newfontfamily\Book{Flama-Book}%
-	\newfontfamily\Medium{Flama-Medium}%
-	\setsansfont{Flama-Light}%
+	% serif math %
+	\usepackage{fontspec}%	
+	\usefonttheme[onlymath]{serif}%
 \fi%
+
+
+\newfontfamily\Light[
+    Path = template/font/,
+    UprightFont = Roboto-Thin,
+    ItalicFont = Roboto-ThinItalic,
+    BoldFont = Roboto-Light,
+    BoldItalicFont = Roboto-LightItalic
+]{Light}
+\newfontfamily\Book[
+    Path = template/font/,
+    UprightFont = Roboto-Regular,
+    ItalicFont = Roboto-Italic,
+    BoldFont = Roboto-Medium,
+    BoldItalicFont = Roboto-MediumItalic
+]{Book}
+\newfontfamily\Medium[
+    Path = template/font/,
+    UprightFont = Roboto-Medium,
+    ItalicFont = Roboto-MediumItalic,
+    BoldFont = Roboto-Bold,
+    BoldItalicFont = Roboto-Bold
+]{Medium}
+
+\setsansfont[
+    Path = template/font/,
+    UprightFont = Roboto-Regular,
+    ItalicFont = Roboto-Italic,
+    BoldFont = Roboto-Medium,
+    BoldItalicFont = Roboto-MediumItalic
+]{Sans}
+
+\setmonofont[
+    Path = template/font/,
+    UprightFont = RobotoMono-Regular,
+    ItalicFont = RobotoMono-Italic,
+    BoldFont = RobotoMono-Medium,
+    BoldItalicFont = RobotoMono-MediumItalic
+]{Mono}
+
+\setromanfont[
+    Path = template/font/,
+    UprightFont = RobotoSlab-Regular,
+    BoldFont = RobotoSlab-Bold
+]{Roman}
+
+
+
 
 \renewcommand\UrlFont{\Medium}
 % Titlepage
@@ -170,15 +205,16 @@
 \def\titlepage{\usebeamertemplate{title page}}
 \setbeamertemplate{title page}
 {
-	% Add background to title page
-	\AddToShipoutPictureFG*{\includegraphics[width=\paperwidth]{background.pdf}}
 	\begin{minipage}[b][\paperheight]{\textwidth}
 	\vspace*{5mm}
-	\includegraphics[height=14mm]{./logo}\par
+	\includegraphics[height=14mm]{template/img/logo}\par
 	\vspace*{5mm}
 	\ifx\insertsubtitle\@empty%
 	\else%
-		{\usebeamerfont{title}\usebeamercolor[fg]{title}\MakeUppercase{\inserttitle}\par}%
+		{\begin{flushleft}
+            \usebeamerfont{title}\usebeamercolor[fg]{title}\MakeUppercase{\inserttitle}\par
+        \end{flushleft}
+        }%
 	\fi%
 	\ifx\insertsubtitle\@empty%
 	\else%

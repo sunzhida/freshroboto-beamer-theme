@@ -1,17 +1,21 @@
 %!TEX program = xelatex
 
-% Name           : hsrm-beamer-demo.sty
-% Author         : Benjamin Weiss (benjamin.weiss@kreatiefton.de)
-% Version        : 0.4
-% Created on     : 05.05.2013
-% Last Edited on : 24.03.2014
-% Copyright      : Copyright (c) 2013-2014 by Benjamin Weiss. All rights reserved.
+% Name           : demo.tex
+% Author         : Moritz Flöter
+% Version        : 1.0
+% Created on     : 17.04.2016
+% Last Edited on : 03.04.2017
+% Copyright      : Copyright (c) 2016-2017 by Moritz Flöter.
+% Based on       : HSRM-Theme from Benjamin Weiss
 % License        : This file may be distributed and/or modified under the
 %                  GNU Public License.
 % Description    : HSRM beamer theme demonstration. Also includes a short 
 %                  Tutorial regarding the beamer class.
 
-\documentclass[compress]{beamer}
+%--------------------------------------------------------------------------
+% aspectratio -> 4:3 -> 43, 16:9 -> 169, 16:10 -> 1610 etc.
+%--------------------------------------------------------------------------
+\documentclass[compress, aspectratio=1610, noserifmath]{beamer}
 %--------------------------------------------------------------------------
 % Common packages
 %--------------------------------------------------------------------------
@@ -47,20 +51,20 @@ xrightmargin=0.5em
 %--------------------------------------------------------------------------
 % Load theme
 %--------------------------------------------------------------------------
-\usetheme{hsrm}
+\usetheme{freshroboto}
 
-\usepackage{dtklogos} % must be loaded after theme
+% must be loaded after theme
 \usepackage{tikz}
 \usetikzlibrary{mindmap,backgrounds}
 
 %--------------------------------------------------------------------------
 % General presentation settings
 %--------------------------------------------------------------------------
-\title{HSRM Beamer Theme}
+\title{Beamer Theme}
 \subtitle{Demonstration und kurze Einführung in Beamer}
 \date{Letztes Update: \today}
-\author{Benjamin Weiss}
-\institute{Studienbereich Informations- und Elektrotechnik\\Hochschule {\Medium RheinMain}}
+\author{Max Mustermann}
+\institute{Institut für WasAuchImmer \\ \textbf{Universität Studienort}}
 
 %--------------------------------------------------------------------------
 % Notes settings
@@ -85,6 +89,7 @@ xrightmargin=0.5em
 \begin{frame}{Gliederung}
 	% hideallsubsections ist empfehlenswert für längere Präsentationen
 	\tableofcontents[hideallsubsections]
+
 \end{frame}
 
 %--------------------------------------------------------------------------
@@ -95,15 +100,15 @@ xrightmargin=0.5em
 \begin{frame}{Was ist Beamer?}
 	Die Beamer Klassen für \LaTeX\ dienen zur Erstellung von Präsentationen, welche mit einem Beamer vorgeführt werden sollen. Das Textsatzsystem erzeugt dazu PDF Dateien, die von einer großen Anzahl an Programmen gezeigt werden können.
 	
-	Das hier vorgestellte Theme für Beamer macht die Erstellung von Folien entsprechend dem Corporate Design der Hochschule {\Medium RheinMain} (Grundkenntnisse in \LaTeX\ vorausgesetzt) zu einem Kinderspiel.
+	Das hier vorgestellte Theme für Beamer macht das Erstellen von Folien(Grundkenntnisse in \LaTeX\ vorausgesetzt) zu einem Kinderspiel.
 \end{frame}
 
 \begin{frame}{Systemvoraussetzungen}
 	Um erfolgreich Präsentationen mit diesem Theme erstellen zu können, sind folgende Voraussetzungen vom System zu erfüllen:
 	\begin{itemize}
-		\item Zum Setzen der Folien muss XeTeX verwendet werden.
+		\item Zum Setzen der Folien muss LuaLaTeX oder XeLaTeX verwendet werden.
 		\item Neben einigen Standardpaketen müssen die Pakete \texttt{beamer}, \texttt{pgf} und \texttt{xcolor} installiert sein.
-		\item Die Schriften \quoted{Flama-Light}, \quoted{Flama-Book} und \quoted{Flama-Medium} sollten installiert sein. Alternativ: \quoted{Arial}\\\url{http://www.felicianotypefoundry.com/}
+		\item Die Vorlage verwendet die Roboto-Schriftarten von Google, welche unter der Apache License Version 2.0 stehen und ohne Installation aus dem Ordner template/font eingebunden werden..
 	\end{itemize}
 \end{frame}
 
@@ -132,7 +137,6 @@ Um die Darstellung der Präsentation anzupassen können die folgenden Optionen g
 		\toprule
 		\textbf{Option}			& \textbf{Auswirkung} \tabularnewline
 		\midrule
-		\texttt{noflama}		& Falls Sie die Schrift Flama nicht besitzen können Sie mit dieser Option auf die Schrift Arial umschalten. \tabularnewline
 		\texttt{noserifmath}		& Formeln werden ebenfalls serifenlos gesetzt. \tabularnewline
 		\texttt{nosectionpages} & Die Sektionseinleitungsseiten werden ausgeblendet.\tabularnewline
 		\bottomrule
@@ -142,7 +146,7 @@ Um die Darstellung der Präsentation anzupassen können die folgenden Optionen g
 \end{frame}
 
 \begin{frame}{Primärfarben}									
-Alle Farben des Corporate Designs sind im Template hinterlegt.
+Die Primärfarben des Designs sind im Template hinterlegt.
 
 
 \begin{multicols}{2}
@@ -341,10 +345,13 @@ In der Beamer Klasse ist die Funktion \lstinline!\alert! definiert, um einzelne 
 \begin{itemize}
 	\item \alert{hervorgehobener Text}
 \end{itemize}
-Zusätzlich sind im HSRM Theme noch \lstinline!\quoted! und \lstinline!\doublequoted! definiert, um die Anführungszeichen des Corporate Designs der Hochschule einfach im Zugriff zu haben. Beispiele:
+
+Darüber hinaus sind im Theme noch folgende Zusatzfunktionen für den Schnellzugriff definiert :
 \begin{itemize}
-	\item[] \quoted{Einfache Anführungszeichen}
-	\item[] \doublequoted{Doppelte Anführungszeichen}
+	\item \lstinline!\quoted{Text}! \hspace{5em} \quoted{Text}
+	\item \lstinline!\doublequoted{Text}! \hspace{1em} \doublequoted{Text}
+	\item \lstinline!\cmark!   \hspace{5em} \cmark 
+	\item \lstinline!\xmark!   \hspace{5em} \xmark 	
 \end{itemize}
 \end{frame}
 
@@ -418,16 +425,10 @@ Schauen Sie einfach in den Quelltext, um zu sehen wie die Folien erstellt wurden
 \begin{frame}{Foto mit Copyright}
 	\begin{figure}
 		\centering
-		\includegraphicscopyright[width=\linewidth]{photo.jpg}{Copyright by \href{http://netzlemming.deviantart.com/}{Netzlemming}, \href{http://creativecommons.org/licenses/by-nc/3.0/}{CC BY-NC 3.0 License}}
+		\includegraphicscopyright[width=60mm, height=60mm]{template/img/logo.eps}{Copyright by me, License}
 	\end{figure}
 \end{frame}
-\begin{frame}{Plot mit Beschriftung}
-	\begin{figure}
-		\centering
-		\input{plot.tex}
-		\caption{LFE channel frequency spectrum}
-	\end{figure}
-\end{frame}
+
 
 \subsection{Tabellen}
 \begin{frame}{Tabelle}
@@ -463,19 +464,6 @@ F(\textrm{j}\omega) = \int\limits_{-\infty}^{\infty} f(t)\cdot\textrm{e}^{-\text
 \end{block}
 \end{frame}
 
-\begin{frame}{Mindmap mit TikZ}
-\centering
-\begin{tikzpicture}[scale=0.88]
-	%\tikzset{every child/.append style={level distance=250}}
-	\path[mindmap,concept color=hsrmWarmGreyLight,text=hsrmWarmGreyDark]
-	node[concept] {\TeX}
-	[clockwise from=-30]
-	child[concept color=hsrmSec2Dark,text=white] { node[concept] {\textcolor{white}{\XeTeX}} }
-	child[concept color=hsrmSec1CompDark,text=white] { node[concept] {\ConTeXt} }
-	child[concept color=hsrmSec1Dark,text=white] { node[concept] {\LaTeX} };
-\end{tikzpicture}
-\end{frame}
-
 \subsection{Fußnoten}
 \begin{frame}{Fußnoten}
 	Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem \footnote{Lorem ipsum dolor sit amet} ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
@@ -485,21 +473,36 @@ F(\textrm{j}\omega) = \int\limits_{-\infty}^{\infty} f(t)\cdot\textrm{e}^{-\text
 \begin{frame}{Folie mit dazugehöriger Notizfolie}
     Für das Publikum ist diese Folie.
 
-	Für ihre Präsentation bieten sich folgende Programme an:
-	\begin{itemize}
-		\item Splitshow (Mac OS X)\\\url{https://code.google.com/p/splitshow/}
-		\item pdf-presenter (Windows)\\\url{https://code.google.com/p/pdf-presenter/}
-	\end{itemize}
+    Für ihre Präsentation bieten sich folgende Programme an:
+    \begin{itemize}
+        \item OSX
+        \begin{itemize}
+            \item pdf to keynote \\ \url{https://www.cs.hmc.edu/~oneill/freesoftware/pdftokeynote.html}    
+            \item Splitshow \\ \url{https://github.com/mpflanzer/splitshow}
+        \end{itemize}
+        \item Windows
+        \begin{itemize}
+            \item Adobe Reader \\ \url{http://www.wikihow.com/View-a-PDF-Document-in-Full-Screen-View} 
+        \end{itemize}
+    \end{itemize}
+
 \end{frame}
 
 \note{
     Für Ihre Notizen zum Vortrag vewenden Sie diese Folie.
     
 	Für ihre Präsentation bieten sich folgende Programme an:
-	\begin{itemize}
-		\item Splitshow (Mac OS X)\\\url{https://code.google.com/p/splitshow/}
-		\item pdf-presenter (Windows)\\\url{https://code.google.com/p/pdf-presenter/}
-	\end{itemize} 
+	  \begin{itemize}
+        \item OSX
+        \begin{itemize}
+            \item pdf to keynote \\ \url{https://www.cs.hmc.edu/~oneill/freesoftware/pdftokeynote.html}    
+            \item Splitshow \\ \url{https://github.com/mpflanzer/splitshow}
+        \end{itemize}
+        \item Windows
+        \begin{itemize}
+            \item Adobe Reader \\ \url{http://www.wikihow.com/View-a-PDF-Document-in-Full-Screen-View} 
+        \end{itemize}
+    \end{itemize}
 }
 
 \subsection{Spalten}
@@ -549,11 +552,11 @@ F(\textrm{j}\omega) = \int\limits_{-\infty}^{\infty} f(t)\cdot\textrm{e}^{-\text
 \end{frame}
 
 \begin{frame}{Fragen, Anmerkungen, Kontakt}
-	Das HSRM Theme steht unter der \quoted{GNU Public License}. Es darf also weitergegeben und modifiziert werden, sofern die Lizenzart beibehalten wird.
+	Das Theme steht unter der \quoted{GNU Public License}. Es darf also weitergegeben und modifiziert werden, sofern die Lizenzart beibehalten wird.
 	
 	Für Fragen und Anmerkungen stehe ich gerne zur Verfügung.
 	\begin{itemize}
-		\item \url{Benjamin.Weiss@student.hs-rm.de}
+		\item $\rightarrow$ github verwenden
 	\end{itemize}
 \end{frame}
 

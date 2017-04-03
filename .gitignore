@@ -30,3 +30,4 @@
 *.xdy
 *.tdo
 .DS_Store
+.texpadtmp
